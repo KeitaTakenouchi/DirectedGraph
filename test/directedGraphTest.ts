@@ -91,8 +91,61 @@ describe("Directed Graph Class",
                 }
             }
         );
+    }
+);
 
+describe("Directed Graph Class",
+    function () {
+        let graph = new DirectedGraph();
+        graph.addEdge(1, 2);
+        graph.addEdge(2, 3);
+        graph.addEdge(2, 5);
+        graph.addEdge(3, 4);
+        graph.addEdge(4, 3);
+        graph.addEdge(5, 3);
+        graph.addEdge(5, 6);
+        graph.addEdge(6, 7);
+        graph.addEdge(7, 6);
+
+        graph.addEdge(8, 9);
+
+        it("should return correct reachable nodes from a given node.",
+            function () {
+                {
+                    let nodes: number[] = graph.reachableFrom(1);
+                    assert(7 == nodes.length);
+                }
+                {
+                    let nodes: number[] = graph.reachableFrom(3);
+                    assert(2 == nodes.length);
+                }
+                {
+                    let nodes: number[] = graph.reachableFrom(5);
+                    assert(5 == nodes.length);
+                }
+            }
+        );
+
+        it("should return correct reachable nodes to a given node.",
+            function () {
+                {
+                    let nodes: number[] = graph.reachableTo(1);
+                    assert(1 == nodes.length);
+                }
+                {
+                    let nodes: number[] = graph.reachableTo(3);
+                    assert(5 == nodes.length);
+                }
+                {
+                    let nodes: number[] = graph.reachableTo(5);
+                    assert(3 == nodes.length);
+                }
+            }
+        );
 
 
     }
+
+
+
 );
