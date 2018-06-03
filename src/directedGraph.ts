@@ -45,7 +45,8 @@ export class DirectedGraph {
         this.depthFirstSearch(nodeId,
             function on(nodeId) {
                 visited.push(nodeId);
-            }
+            },
+            function off(nodeId) { }
         )
         return visited;
     }
@@ -66,7 +67,7 @@ export class DirectedGraph {
 
     public depthFirstSearch(startId: number,
         on: (nodeId: number) => void,
-        off?: (nodeId: number) => void
+        off: (nodeId: number) => void
     ): void {
         let worklist = new Stack<{ id: number, index: number }>();
         let visited = new Set<number>();
